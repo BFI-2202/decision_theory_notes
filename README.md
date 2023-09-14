@@ -8,7 +8,7 @@
 
 | Дата       | Рассмотренные темы                               | Ссылка на конспект |
 |------------|--------------------------------------------------|--------------------|
-| 01.09.2023 | Неличная форма глаголов, инфинитив; резюме | [markdown](semester_01/september/01-09-2023.md), [pdf](semester_01/september/render/01-09-2023.pdf)       |
-| 04.09.2023 | Неличная форма глаголов, инфинитив; резюме | [markdown](semester_01/september/04-09-2023.md), [pdf](semester_01/september/render/04-09-2023.pdf)       |
-| 11.09.2023 | Неличная форма глаголов, инфинитив; резюме || [markdown](semester_01/september/11-09-2023.md), [pdf](semester_01/september/render/11-09-2023.pdf)       |
+| 01.09.2023 | Введение в теорию принятия решений: классификация задач принятия решений | [markdown](semester_01/september/01-09-2023.md), [pdf](semester_01/september/render/01-09-2023.pdf)       |
+| 04.09.2023 | Введение в теорию игр: матричная игра, формализация матричной игры, примеры матричных игр | [markdown](semester_01/september/04-09-2023.md), [pdf](semester_01/september/render/04-09-2023.pdf)       |
+| 11.09.2023 | Принципы оптимальности для игроков матричной игры, ситуация равновесия в матричной игре, смешанное расширение матричной игры | [markdown](semester_01/september/11-09-2023.md), [pdf](semester_01/september/render/11-09-2023.pdf)       |
 | **Общий документ** | --- | [markdown](semester_01/september/september.md), [pdf](semester_01/september/render/september.pdf)       |
