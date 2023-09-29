@@ -14,4 +14,5 @@
 | 15.09.2023 | Практика | Решение матричной $2 \times 2$ игры, решение матричной $2 \times n$ игры | [markdown](semester_01/september/15-09-2023.md), [pdf](semester_01/september/render/15-09-2023.pdf)       |
 | 18.09.2023 | Практика | Геометрические методы решения матричных игр: $2 \times n$ игры, $m \times 2$ игры; домашнее задание | [tex](semester_01/september/18-09-2023.tex), [pdf](semester_01/september/render/18-09-2023.pdf)       |
 | 25.09.2023 | Лекция | Доминирование стратегий: определение доминирования в классе смешанных стратегий, теоремы о доминировании стратегий; решение матричной игры размерности $n \times n$ | [tex](semester_01/september/25-09-2023.tex), [pdf](semester_01/september/render/25-09-2023.pdf)       |
+| 29.09.2023 | Практика | Решение игры в чистых стратегиях; решение игры в матричных стратегиях; домашнее задание | [tex](semester_01/september/29-09-2023.tex), [pdf](semester_01/september/render/29-09-2023.pdf)       |
 | **Общий документ** | --- | ---| [markdown](semester_01/september/september.md), [pdf](semester_01/september/render/september.pdf)       |
