@@ -24,6 +24,37 @@
     colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black
 }
 
+\tikzset{
+  dot/.style={circle, fill, inner sep=1.5pt},
+  marked/.style={
+    postaction={decorate},
+    decoration={
+        markings,
+        mark=
+        between positions 0 and 1 step 3mm
+        with
+        {
+            \draw[thick, color=gray!70, shorten >= 0, shorten <= 0, -] (0,0) -- (0.1,0.2);
+        }
+    }
+  },
+  markedP/.style={
+    postaction={decorate},
+    decoration={
+        markings,
+        mark=
+        between positions 0.05 and 0.95 step 8mm
+        with
+        {
+            \draw[thick, shorten >= 0, shorten <= 0, -] (0,-0.5) -- (0,0.5);
+        }
+    }
+  },
+  extend/.style={shorten >= -#1, shorten <= -#1},
+  extend/.default=0.7cm
+}
+\usetikzlibrary{decorations.markings, patterns, calc}
+
 \title{Теория принятия решений}
 \author{Лисид Лаконский}
 \date{October 2023}
@@ -113,6 +144,27 @@ $F(\overline{x})$ выше было записано в следующем ви�
 
 В случае \textbf{задачи на минимум} необходимо двигаться в направлении $- grad \ F$.
 
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \draw[very thin,color=gray!50] (-0.5,-0.5) grid (5.9,4.9);
+        \draw[->] (-0.5,0) -- (6.2,0) node[right] {$x_1$};
+        \draw[->] (0,-0.5) -- (0,4.6) node[above] {$x_2$};
+
+        \coordinate[dot, label=right:$A$] (A) at (0, 2);
+        \coordinate[dot, label=above:$B$] (B) at (2, 0);
+        \coordinate[dot, label=above:$C$] (C) at (6, 4);
+
+        \draw [very thick, marked, extend] (A) -- (B);
+        \draw [very thick, marked, extend] (B) -- (C);
+
+        \draw[->, very thick, color=blue, markedP] (0,0) -- (5,5) node[above] {$\mathrm{grad} F$};
+
+        \node[right, xshift=0.2cm] at (C) {$F = \max$};
+    \end{tikzpicture}
+    \caption{Чертёж к определению геометрического способа решения ЗЛП}
+\end{figure}
+
 \paragraph{Пример №1}
 
 Решить геометрически задачу линейного программирования:
@@ -147,6 +199,45 @@ $$
 $$
 
 Получаем решение: $X^{*} = (6, 4), F(X^{*}) = 24$
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=0.50]
+        \draw[very thin,color=gray!30] (0,0) grid (19.9,17.9);
+        \draw[->] (-0.5,0) -- (20,0) node[right] {$x_1$};
+        \draw[->] (0,-0.5) -- (0,18) node[above] {$x_2$};
+
+        \coordinate[dot] (A) at (18, 0);
+        \coordinate[dot] (B) at (0, 6);
+        \coordinate[dot] (C) at (8, 0);
+        \coordinate[dot] (D) at (0, 16);
+
+        \draw [thick, marked, extend] (A) -- (B);
+        \draw [thick, marked, extend] (C) -- (D);
+        \draw [thick, marked, extend] (20, 5) -- (0, 5);
+        \draw [thick, marked, extend] (7, 0) -- (7, 16);
+        \draw [marked] (0, 17) -- (0,0);
+        \draw [marked] (0, 0) -- (19,0);
+
+        \draw [very thick, color=red, pattern = north west lines, pattern color = gray] (0, 0) -- (0, 5) -- (3, 5) -- (6, 4) -- (7, 2) -- (7, 0) -- cycle;
+
+        \draw [thick, color=blue, extend=2cm] ($(0,0)!(6,4)!(2,3)$) -- (6,4);
+
+        \draw[->, very thick, color=blue, markedP] (0,0) -- (8,12) node[above] {$\mathrm{grad} F$};
+
+        \node[dot, color=red] at (6, 4) {};
+
+        \foreach \point in {(0,0), (0,5), (3,5), (7,2), (7,0)}
+            \node[dot] at \point {};
+        \foreach \x in {1,...,6,8,9,...,18}
+            \draw (\x, 1mm) -- (\x, -1mm) node[below] {$\x$};
+        \foreach \y in {1,...,16}
+            \draw (1mm, \y) -- (-1mm, \y) node[left] {$\y$};
+        \foreach \x in {0,7}
+            \draw (\x, 1mm) -- (\x, -1mm) node[below left] {$\x$};
+    \end{tikzpicture}
+    \caption{Чертёж к примеру 1}
+\end{figure}
 
 \paragraph{Пример №2}
 
@@ -206,6 +297,50 @@ $$
 Построим его на графике вместе с опорными линиями в его направлении. Видим: $A = \{ 5, 6 \}, F(A) = -5 - 6 + 13 = 2$. Проверим другие точки: $B = \{ 6, 2 \}, F(B) = -6 - 2 + 13 = 5$, $C = \{ 2, 5 \}, F(C) = -2 - 5 + 13 = 6$. Окончательно убеждаемся: $A$ — т. $min$
 
 $x_4 = x_5 = 0$, $x_3 = 1 + 2 * 5 - 6 = 5$, $x_6 = -5 + 3 * 6 = 13 \implies X^{*} = (5, 6, 5, 0, 0, 13), F(X^{*}) = 2$
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \draw[very thin,color=gray!30] (0,0) grid (6.9,6.9);
+        \draw[->] (-0.5,0) -- (7,0) node[right] {$x_1$};
+        \draw[->] (0,-0.5) -- (0,7) node[above] {$x_2$};
+
+        \coordinate[label={[above right]:$A$}] (A) at (5, 6);
+        \coordinate[label={[below right]:$B$}] (B) at (6, 2);
+        \coordinate[label={[above left]:$C$}] (C) at (2, 5);
+        \coordinate[] (D) at (0, 1);
+
+        \draw [thick, marked, extend=3cm] (A) node[above right, xshift=2cm]{$(1)$} -- (C);
+        \draw [thick, marked, extend=1cm] (B) node[xshift=-0.2cm, yshift=-0.5cm]{$(2)$} -- (A);
+        \draw [thick, marked, extend] (0,0) -- (B) node[right, xshift=0.5cm]{$(4)$};
+        \draw [thick, marked, extend] (C) -- (D) node[left, yshift=-0.5cm, xshift=-0.2cm]{$(3)$};
+        \draw [marked] (D) -- (0,0);
+
+        \draw [very thick, color=red, pattern = north west lines, pattern color = gray] (0, 0) -- (D) -- (C) -- (A) -- (B) -- cycle;
+
+        \draw [thick, color=blue, extend=2cm] ($(0,0)!(A)!(1,1)$) -- (A);
+
+        \draw[->, very thick, color=blue, markedP] (0,0) -- (7,7) node[above] {$-\mathrm{grad} F$};
+
+        \node[dot, color=red] at (A) {};
+
+        \draw[dashed] (0, 5) -- (C);
+        \draw[dashed] (0, 6) -- (A);
+        \draw[dashed] (0, 2) -- (B);
+        \draw[dashed] (2, 0) -- (C);
+        \draw[dashed] (5, 0) -- (A);
+        \draw[dashed] (6, 0) -- (B);
+
+        \foreach \point in {(0,0), (B), (C), (D)}
+            \node[dot] at \point {};
+        \foreach \x in {1,...,6}
+            \draw (\x, 1mm) -- (\x, -1mm) node[below] {$\x$};
+        \foreach \y in {1,...,6}
+            \draw (1mm, \y) -- (-1mm, \y) node[left] {$\y$};
+        \draw (0, 1mm) -- (0, -1mm) node[below left] {$0$};
+    \end{tikzpicture}
+    \caption{Чертёж к примеру 2}
+\end{figure}
 
 \paragraph{Пример №3}
 
@@ -280,5 +415,44 @@ $$X^{*} = (2\alpha, \frac{2}{3}\alpha + 2(1 - \alpha))$$
 $$
 X_3^{*} = 2 - 2\alpha, X_{4}^{*} = 1 - \frac{1}{3} * 2\alpha - \frac{1}{2}(\frac{2}{3}\alpha + 2(1 - \alpha))
 $$
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=2]
+        \draw[very thin,color=gray!30] (-0.5,-0.5) grid (3.5, 2.5);
+        \draw[->] (-0.5,0) -- (3.5,0) node[right] {$x_1$};
+        \draw[->] (0,-0.5) -- (0,2.5) node[above] {$x_2$};
+
+        \coordinate[] (A) at (0, 2);
+        \coordinate[] (B) at (2, 2/3);
+        \coordinate[] (C) at (3, 0);
+        \coordinate[] (D) at (2, 0);
+        \coordinate[] (O) at (0, 0);
+
+        \draw [thick, marked, extend=1cm] (C) node[below right, yshift=-0.3cm]{$(1)$} -- (A);
+        \draw [thick, marked, extend=1cm] (D) node[below right, yshift=-0.5cm]{$(2)$} -- (B);
+        \draw [marked] (O) -- (D);
+        \draw [marked] (A) -- (O);
+
+        \draw [very thick, color=red, pattern = north west lines, pattern color = gray] (O) -- (A) -- (B) -- (D) -- cycle;
+
+        \draw [very thick, color=blue, extend] (A) -- (B);
+
+        \draw[->, very thick, color=blue, markedP] (0,0) -- (2,3) node[above] {$\mathrm{grad} F$};
+
+        \node[dot, color=red] at (A) {};
+        \node[dot, color=red] at (B) {};
+
+        \draw[dashed] (B) -- (0, 2/3) node[left]{$2/3$};
+
+        \foreach \point in {(O), (C), (D)}
+            \node[dot] at \point {};
+        \foreach \x in {0,...,3}
+            \draw (\x, 1pt) -- (\x, -1pt) node[below left] {$\x$};
+        \foreach \y in {1,2}
+            \draw (1pt, \y) -- (-1pt, \y) node[below left] {$\y$};
+    \end{tikzpicture}
+    \caption{Чертёж к примеру 3}
+\end{figure}
 
 \end{document}
